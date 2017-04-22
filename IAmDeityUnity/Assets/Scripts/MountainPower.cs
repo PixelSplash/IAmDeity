@@ -14,15 +14,25 @@ public class MountainPower : MonoBehaviour {
 	void Update () {
         if (Input.GetMouseButtonDown(0))
         {
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), hit){
-                Destroy(hit.transform.gameObject);
+            float maxDistance = Mathf.Infinity;
+            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, maxDistance)) {
+                if(hit.collider.gameObject.tag == "Land")
+                {
+                    Vector3 pos = hit.point;
+                    pos.y = -7.2f;
+                    GameObject newMountain = Instantiate(mountain, pos, Quaternion.identity);
+
+                    Vector3 _newDirection = new Vector3(-89.98f, 0f, 0f);
+                    newMountain.transform.localEulerAngles = _newDirection;
+                }else if (hit.collider.gameObject.tag == "Mountain")
+                {
+                    MountainUp mountainScr = hit.collider.gameObject.GetComponent<MountainUp>();
+                    mountainScr.up = false;
+                }
+
             }
-            Vector3 position = Camera.main.ViewportToWorldPoint(Input.mousePosition);
-            position.y = -10;
+
             
-            GameObject newMountain = Instantiate(mountain, position, Quaternion.identity);
-            Vector3 _newDirection = new Vector3(-89.98f, 0f, 0f);
-            newMountain.transform.localEulerAngles = _newDirection;
         }
 	}
 }
