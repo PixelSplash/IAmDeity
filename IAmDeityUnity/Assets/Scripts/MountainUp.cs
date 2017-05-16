@@ -6,7 +6,7 @@ public class MountainUp : MonoBehaviour {
     public float maxAltitude;
     public float minAltitude;
     public float underAltitude;
-    private float altitude;
+    public float altitude;
     public float speed;
     public bool up;
 

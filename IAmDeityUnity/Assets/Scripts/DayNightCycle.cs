@@ -19,7 +19,7 @@ public class DayNightCycle : MonoBehaviour
     void Update()
     {
         _sunPos += _dayVelocity * Time.deltaTime;
-        Vector3 _newDirection = new Vector3(_sunPos, 0f, 0f);
+        Vector3 _newDirection = new Vector3(_sunPos, 45.0f, 0f);
         transform.localEulerAngles = _newDirection;
     }
 }
